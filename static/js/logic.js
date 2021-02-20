@@ -10,7 +10,7 @@ d3.json(queryUrl, function(data) {
 
 function createFeatures(earthquakeData) {
 
-  // Define a function we want to run once for each feature in the features array
+
   // Give each feature a popup describing the place and time of the earthquake
   function onEachFeature(feature, layer) {
     layer.bindPopup("<h3>" + feature.properties.place +
@@ -44,8 +44,8 @@ function createFeatures(earthquakeData) {
     }
   }
 
-  // Create a GeoJSON layer containing the features array on the earthquakeData object
-  // Run the onEachFeature function once for each piece of data in the array
+  // Create a GeoJSON layer containing feature array on the quakeData object
+
   var earthquakes = L.geoJSON(earthquakeData, {
     pointToLayer: function(earthquakeData, latlng) {
       return L.circle(latlng, {
@@ -57,13 +57,13 @@ function createFeatures(earthquakeData) {
     onEachFeature: onEachFeature
   });
 
-  // Sending our earthquakes layer to the createMap function
+  // Sending our earthquakes layer to the createMap
   createMap(earthquakes);
 }
 
 function createMap(earthquakes) {
 
-  // Define outdoormap, satellitemap, and grayscalemap layers
+  // outdoormap, satellitemap, and grayscalemap layers
   var outdoorsmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
@@ -117,8 +117,7 @@ function createMap(earthquakes) {
   });
 
   // Create a layer control
-  // Pass in our baseMaps and overlayMaps
-  // Add the layer control to the map
+ 
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(myMap);
@@ -154,7 +153,7 @@ function createMap(earthquakes) {
           mags = [0, 1, 2, 3, 4, 5],
           labels = [];
   
-      // loop through our density intervals and generate a label with a colored square for each interval
+      
       for (var i = 0; i < mags.length; i++) {
           div.innerHTML +=
               '<i style="background:' + getColor(mags[i] + 1) + '"></i> ' +
